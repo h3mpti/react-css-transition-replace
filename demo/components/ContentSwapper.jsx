@@ -12,9 +12,12 @@ class ContentSwapper extends React.Component {
 
   render() {
     const content = React.Children.toArray(this.props.children)
-    const {style = {}} = this.props
+    let {style = {}} = this.props
 
-    style.cursor = 'pointer'
+    style = {
+      ...style,
+      cursor: 'pointer',
+    }
 
     return (
       <ReactCSSTransitionReplace {...this.props} style={style} onClick={this.handleClick}>
