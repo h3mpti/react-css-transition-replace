@@ -7,12 +7,19 @@
 import addClass from 'dom-helpers/class/addClass'
 import removeClass from 'dom-helpers/class/removeClass'
 import raf from 'dom-helpers/util/requestAnimationFrame'
-import { transitionEnd, animationEnd } from 'dom-helpers/transition/properties'
+import {
+  transitionEnd,
+  animationEnd
+} from 'dom-helpers/transition/properties'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { findDOMNode } from 'react-dom'
+import {
+  findDOMNode
+} from 'react-dom'
 
-import { nameShape } from './utils/PropTypes'
+import {
+  nameShape
+} from './utils/PropTypes'
 
 let events = []
 if (transitionEnd) {
@@ -48,6 +55,7 @@ const propTypes = {
   appear: PropTypes.bool,
   enter: PropTypes.bool,
   leave: PropTypes.bool,
+  revertTransition: PropTypes.bool,
   appearTimeout: PropTypes.number,
   enterTimeout: PropTypes.number,
   leaveTimeout: PropTypes.number,
@@ -86,7 +94,9 @@ class CSSTransitionGroupChild extends React.Component {
     }
 
     let className = this.props.name[animationType] || this.props.name + '-' + animationType
+
     let activeClassName = this.props.name[animationType + 'Active'] || className + '-active'
+
     let timer = null
     let removeListeners
 
@@ -162,7 +172,11 @@ class CSSTransitionGroupChild extends React.Component {
 
   componentWillAppear = (done) => {
     if (this.props.appear) {
-      this.transition('appear', done, this.props.appearTimeout)
+      if (this.props.revertTransition) {
+        this.transition('appear-revert', done, this.props.appearTimeout)
+      } else {
+        this.transition('appear', done, this.props.appearTimeout)
+      }
     } else {
       done()
     }
@@ -170,7 +184,11 @@ class CSSTransitionGroupChild extends React.Component {
 
   componentWillEnter = (done) => {
     if (this.props.enter) {
-      this.transition('enter', done, this.props.enterTimeout)
+      if (this.props.revertTransition) {
+        this.transition('enter-revert', done, this.props.enterTimeout)
+      } else {
+        this.transition('enter', done, this.props.enterTimeout)
+      }
     } else {
       done()
     }
@@ -178,14 +196,19 @@ class CSSTransitionGroupChild extends React.Component {
 
   componentWillLeave = (done) => {
     if (this.props.leave) {
-      this.transition('leave', done, this.props.leaveTimeout)
+      if (this.props.revertTransition) {
+        this.transition('leave-revert', done, this.props.leaveTimeout)
+      } else {
+        this.transition('leave', done, this.props.leaveTimeout)
+      }
     } else {
       done()
     }
   }
 
   render() {
-    const props = {...this.props}
+    const props = { ...this.props
+    }
     delete props.name
     delete props.appear
     delete props.enter

@@ -1,11 +1,11 @@
 {
-  "name": "react-css-transition-replace",
-  "version": "3.0.3",
+  "name": "react-css-transition-replace-enhanced",
+  "version": "3.0.5",
   "description": "A React component to animate replacing one element with another.",
   "main": "lib/ReactCSSTransitionReplace.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/marnusw/react-css-transition-replace.git"
+    "url": "https://github.com/h3mpti/react-css-transition-replace.git"
   },
   "scripts": {
     "start": "gulp demo",
@@ -43,7 +43,7 @@
     "babel-plugin-transform-es2015-for-of": "^6.8.0",
     "babel-plugin-transform-es2015-function-name": "^6.24.1",
     "babel-plugin-transform-es2015-literals": "^6.8.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-plugin-transform-es2015-object-super": "^6.24.1",
     "babel-plugin-transform-es2015-parameters": "^6.24.1",
     "babel-plugin-transform-es2015-shorthand-properties": "^6.24.1",
@@ -63,7 +63,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.13",
     "babel-polyfill": "^6.26.0",
     "babelify": "^8.0.0",
-    "browser-sync": "^2.23.6",
+    "browser-sync": "^2.24.5",
     "browserify": "^16.2.0",
     "del": "^3.0.0",
     "eslint": "^4.19.1",
